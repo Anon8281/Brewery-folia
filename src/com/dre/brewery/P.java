@@ -57,7 +57,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Function;
 
-@MavenLibrary(groupId = "com.github.Anon8281", artifactId = "UniversalScheduler", version = "0.0.7", repo = @Repository(url = "https://jitpack.io"))
+@MavenLibrary(groupId = "com.github.Anon8281", artifactId = "UniversalScheduler", version = "0.0.8", repo = @Repository(url = "https://jitpack.io"))
 public class P extends JavaPlugin {
 	public static P p;
 	public static boolean debug;
