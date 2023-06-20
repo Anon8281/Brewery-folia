@@ -129,7 +129,7 @@ public class DataSave extends BukkitRunnable {
 			P.p.debugLog("saving: " + ((System.nanoTime() - saveTime) / 1000000.0) + "ms");
 
 			if (P.p.isEnabled()) {
-				P.p.getServer().getScheduler().runTaskAsynchronously(P.p, new WriteData(data, worldData));
+				P.getScheduler().runTaskAsynchronously(P.p, new WriteData(data, worldData));
 			} else {
 				new WriteData(data, worldData).run();
 			}

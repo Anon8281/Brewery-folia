@@ -1,16 +1,18 @@
 name: Brewery
 version: 3.1.1
 main: com.dre.brewery.P
-softdepend: [LWC, LogBlock, WorldGuard, GriefPrevention, Vault, ChestShop, Shopkeepers, Towny, BlockLocker, Slimefun]
-authors: [Milan Albrecht, Frank Baumann, ProgrammerDan, Daniel Saukel]
+depend: [ helper ]
+softdepend: [ LWC, LogBlock, WorldGuard, GriefPrevention, Vault, ChestShop, Shopkeepers, Towny, BlockLocker, Slimefun ]
+authors: [ Milan Albrecht, Frank Baumann, ProgrammerDan, Daniel Saukel ]
 api-version: 1.13
+folia-supported: true
 commands:
   brewery:
     description: Mostly admin commands to create/modify Brews and drunkeness
-    aliases: [brew]
+    aliases: [ brew ]
 permissions:
-# -- Groups --
-# User
+  # -- Groups --
+  # User
   brewery.user:
     description: Access to everything needed for brewing
     default: true
@@ -21,14 +23,14 @@ permissions:
       brewery.cauldron.time: true
       brewery.cauldron.insert: true
       brewery.cauldron.fill: true
-# Mod
+  # Mod
   brewery.mod:
     description: Allow to maintain Wakeup Points and to login even if overdrunken
     children:
       brewery.user: true
       brewery.cmd.wakeup: true
       brewery.bypass.logindeny: true
-# Admin
+  # Admin
   brewery.admin:
     description: Gives access to Every Command and most bypasses
     default: op
@@ -48,7 +50,7 @@ permissions:
       brewery.cmd.delete: true
       brewery.cmd.static: true
       brewery.cmd.reload: true
-# *
+  # *
   brewery.*:
     description: Gives Access to every Permission, including bypasses and overrides
     children:
@@ -58,7 +60,7 @@ permissions:
       brewery.bypass.overdrink: true
       brewery.bypass.teleport: true
 
-# -- Commands --
+  # -- Commands --
   brewery.cmd.unlabel:
     description: Remove Parts of the Potionlabel
   brewery.cmd.info:
@@ -90,7 +92,7 @@ permissions:
   brewery.cmd.reload:
     description: Reload config
 
-# -- Barrel --
+  # -- Barrel --
   brewery.createbarrel:
     description: Allow to create all types of Barrels
     children:
@@ -114,7 +116,7 @@ permissions:
   brewery.openbarrel.mc:
     description: Allow to open Minecraft Barrels
 
-# -- Cauldron --
+  # -- Cauldron --
   brewery.cauldron.time:
     description: View the current Cooking time of a cauldron with a watch
   brewery.cauldron.insert:
@@ -122,7 +124,7 @@ permissions:
   brewery.cauldron.fill:
     description: Fill a Bottle from a Cauldron with a brewery brew
 
-# -- Bypasses --
+  # -- Bypasses --
   brewery.bypass.logindeny:
     description: Can always login, even with extreme drunkeness
   brewery.bypass.overdrink:
@@ -130,7 +132,7 @@ permissions:
   brewery.bypass.teleport:
     description: Will despite config-setting not be teleported on login
 
-# -- Modifiers --
+  # -- Modifiers --
 
   brewery.sensitive.100:
     description: How sensitive to alcohol the player is in percent
