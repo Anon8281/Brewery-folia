@@ -3,17 +3,17 @@ package com.dre.brewery.filedata;
 
 import com.dre.brewery.*;
 import com.dre.brewery.utility.BUtil;
+import com.github.Anon8281.universalScheduler.UniversalRunnable;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class DataSave extends BukkitRunnable {
+public class DataSave extends UniversalRunnable {
 
 	public static int lastBackup = 0;
 	public static int lastSave = 1;

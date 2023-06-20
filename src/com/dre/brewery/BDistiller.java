@@ -1,6 +1,7 @@
 package com.dre.brewery;
 
 import com.dre.brewery.lore.BrewLore;
+import com.github.Anon8281.universalScheduler.UniversalRunnable;
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import java.util.Map;
  * Updated for 1.9 to replicate the "Brewing" process for distilling.
  * Because of how metadata has changed, the brewer no longer triggers as previously described.
  * So, I've added some event tracking and manual forcing of the brewing "animation" if the
- * set of ingredients in the brewer can be distilled.
+ *  set of ingredients in the brewer can be distilled.
  * Nothing here should interfere with vanilla brewing.
  *
  * @author ProgrammerDan (1.9 distillation update only)
@@ -42,11 +42,11 @@ public class BDistiller {
 	}
 
 	public void cancelDistill() {
-		task.cancel(); // cancel prior
+		task.cancel();
 	}
 
 	public void start() {
-		task = P.getScheduler().runTaskTimer(new DistillRunnable(), 2L, 1L);
+		task = new DistillRunnable().runTaskTimer(P.p, 2L, 1L);
 	}
 
 	public static void distillerClick(InventoryClickEvent event) {
@@ -168,7 +168,7 @@ public class BDistiller {
 		}
 	}
 
-	public class DistillRunnable implements Runnable {
+	public class DistillRunnable extends UniversalRunnable {
 		private Brew[] contents = null;
 
 		@Override
@@ -190,7 +190,7 @@ public class BDistiller {
 					stand.setBrewingTime(0);
 					stand.update();
 					if (!runDistill(stand.getInventory(), contents)) {
-						if (task != null) task.cancel();
+						this.cancel();
 						trackedDistillers.remove(standBlock);
 						P.p.debugLog("All done distilling");
 					} else {
@@ -201,7 +201,7 @@ public class BDistiller {
 					stand.update();
 				}
 			} else {
-				if (task != null) task.cancel();
+				this.cancel();
 				trackedDistillers.remove(standBlock);
 				P.p.debugLog("The block was replaced; not a brewing stand.");
 			}
@@ -234,7 +234,7 @@ public class BDistiller {
 					}
 				case 0:
 					// No custom potion, cancel and ignore
-					if (task != null) task.cancel();
+					this.cancel();
 					trackedDistillers.remove(standBlock);
 					showAlc(inventory, contents);
 					P.p.debugLog("nothing to distill");
