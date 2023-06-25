@@ -1,7 +1,6 @@
 name: Brewery
 version: 3.1.1
 main: com.dre.brewery.P
-depend: [ helper ]
 softdepend: [ LWC, LogBlock, WorldGuard, GriefPrevention, Vault, ChestShop, Shopkeepers, Towny, BlockLocker, Slimefun ]
 authors: [ Milan Albrecht, Frank Baumann, ProgrammerDan, Daniel Saukel ]
 api-version: 1.13
